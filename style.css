@@ -1,51 +1,27 @@
 body {
-  font-family: Arial, sans-serif;
-  text-align: center;
-  background-color: #f4f4f4;
-  padding-top: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
   margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to right, #74ebd5, #acb6e5);
 }
 
-h1 {
-  color: #333;
-}
-
-.choices {
-  margin: 20px;
-}
-
-.choices button {
-  font-size: 18px;
-  padding: 10px 20px;
-  margin: 10px;
-  cursor: pointer;
-  border: none;
-  border-radius: 5px;
-  background-color: #008cba;
-  color: white;
-  transition: background-color 0.3s ease;
-}
-
-.choices button:hover {
-  background-color: #005f73;
-}
-
-.result {
-  font-size: 24px;
-  margin-top: 30px;
-  color: #222;
-}
-
-.score {
-  margin-top: 20px;
-  font-size: 20px;
-}
-
-.game-box {
-  background-color: rgb( 255, 123, 136);
-  border-radius: 10px;
-  padding: 30px 40px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+.container {
   text-align: center;
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
   width: 350px;
+  background-color: rgb(135, 212, 222);
+}
+
+.header-image {
+  width: 100%;
+  max-height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 20px;
 }

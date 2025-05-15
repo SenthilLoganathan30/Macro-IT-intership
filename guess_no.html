@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Guess the Number 🎯</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="container">
+    <h1>🎯 Guess the Number</h1>
+    <p>I'm thinking of a number between <strong>1</strong> and <strong>50</strong>.</p>
+
+    <input type="number" id="guessInput" placeholder="Your guess..." min="1" max="50" />
+    <button onclick="submitGuess()">Guess</button>
+
+    <div id="message" class="message">Start guessing!</div>
+
+    <div class="progress-bar">
+      <div id="progress" class="progress-fill"></div>
+    </div>
+    <p class="attempts" id="attempts">Attempts left: 10</p>
+
+    <button id="playAgain" onclick="resetGame()">🔁 Play Again</button>
+  </div>
+
+  <script>
+    let secretNumber = Math.floor(Math.random() * 50) + 1;
+let attemptsLeft = 10;
+const maxAttempts = 10;
+
+function submitGuess() {
+  const guessInput = document.getElementById("guessInput");
+  const guess = Number(guessInput.value);
+  const message = document.getElementById("message");
+  const progress = document.getElementById("progress");
+  const attemptsDisplay = document.getElementById("attempts");
+
+  // Validate input
+  if (!guess || guess < 1 || guess > 50) {
+    message.textContent = "🚫 Please enter a number between 1 and 50.";
+    return;
+  }
+
+  attemptsLeft--;
+
+  if (guess === secretNumber) {
+    message.textContent = `🎉 You got it! The number was ${secretNumber}`;
+    endGame();
+  } else if (guess < secretNumber) {
+    message.textContent = "📉 Too low!";
+  } else {
+    message.textContent = "📈 Too high!";
+  }
+
+  // Update progress bar and attempts
+  const progressPercent = (attemptsLeft / maxAttempts) * 100;
+  progress.style.width = `${progressPercent}%`;
+  attemptsDisplay.textContent = `Attempts left: ${attemptsLeft}`;
+
+  // If out of attempts
+  if (attemptsLeft === 0 && guess !== secretNumber) {
+    message.textContent = `❌ Game over! The number was ${secretNumber}`;
+    endGame();
+  }
+
+  guessInput.value = "";
+}
+
+function endGame() {
+  document.getElementById("guessInput").disabled = true;
+  document.querySelector("button[onclick='submitGuess()']").disabled = true;
+  document.getElementById("playAgain").style.display = "inline-block";
+}
+
+function resetGame() {
+  secretNumber = Math.floor(Math.random() * 50) + 1;
+  attemptsLeft = maxAttempts;
+
+  document.getElementById("guessInput").disabled = false;
+  document.querySelector("button[onclick='submitGuess()']").disabled = false;
+  document.getElementById("message").textContent = "Start guessing!";
+  document.getElementById("progress").style.width = "100%";
+  document.getElementById("attempts").textContent = `Attempts left: ${maxAttempts}`;
+  document.getElementById("guessInput").value = "";
+  document.getElementById("playAgain").style.display = "none";
+}
+
+  </script>
+</body>
+</html>
